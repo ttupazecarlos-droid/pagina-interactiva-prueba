@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tia Óleo - Materiales de Arte</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1 class="logo-text">Tia Óleo</h1>
+    <p>Tu tienda de materiales de arte | Cel/WhatsApp: +51 993706366</p>
+  </header>
+
+  <nav>
+    <a href="#inicio">INICIO</a>
+    <a href="#papeles">PAPELES Y BLOCS</a>
+    <a href="#cuadernos">CUADERNOS</a>
+    <a href="#pinturas">PINTURAS</a>
+    <a href="#pinceles">PINCELES Y MARCADORES</a>
+    <a href="#lapices">LAPICES DE COLORES</a>
+  </nav>
+
+  <button class="btn-inicio-flotante" id="btnInicio" onclick="irAlInicio()"></button>
+
+    <section id="inicio">
+        <div class="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item">
+            <img src="img/05-pinturas-acrilicas-pasteles.png" alt="Pinturas Acrílicas">
+            <div class="carousel-overlay">
+                <h2>Bienvenidos a Tia Óleo</h2>
+                <p>Tu tienda especializada en <strong>materiales de arte de calidad</strong>. Papeles, pinturas, pinceles, cuadernos y todo lo que necesitas para crear.</p>
+            </div>
+            </div>
+            <div class="carousel-item">
+            <img loading="lazy" src="img/01-bloc-papel-canvas.jpg" alt="Papeles para Pintar">
+            <div class="carousel-overlay">
+                <h2>Papeles de Calidad</h2>
+                <p>Blocs para acrílicos, acuarela, dibujo y papel calco. Superficies profesionales para cada técnica.</p>
+            </div>
+            </div>
+            <div class="carousel-item">
+            <img loading="lazy" src="img/03-set-pinceles-acuarela.jpg" alt="Set de Pinceles">
+            <div class="carousel-overlay">
+                <h2>Pinceles Profesionales</h2>
+                <p>Sets de pinceles para acuarela, acrílicos y óleo. Calidad profesional a tu alcance.</p>
+            </div>
+            </div>
+            <div class="carousel-item">
+            <img loading="lazy" src="img/17-caja-50-lapices-deluxe.jpg" alt="Lápices de Colores">
+            <div class="carousel-overlay">
+                <h2>Lápices de Colores</h2>
+                <p>Desde sets de 30 hasta cajas de 50 lápices deluxe. Pigmentos de alto rendimiento y colores vibrantes.</p>
+            </div>
+            </div>
+            <div class="carousel-item">
+            <img loading="lazy" src="img/14-croquera-premium.jpg" alt="Cuadernos de Croquera">
+            <div class="carousel-overlay">
+                <h2>Cuadernos y Croqueras</h2>
+                <p>Sketchbooks premium, cuadernos de diseño moda y block de dibujo. Lleva tu arte a todas partes.</p>
+            </div>
+            </div>
+        </div>
+        <div class="carousel-controls">
+            <button class="carousel-btn" onclick="previousSlide()">&#8249;</button>
+            <button class="carousel-btn" onclick="nextSlide()">&#8250;</button>
+        </div>
+        <div class="carousel-indicators">
+            <span class="indicator active" onclick="goToSlide(0)"></span>
+            <span class="indicator" onclick="goToSlide(1)"></span>
+            <span class="indicator" onclick="goToSlide(2)"></span>
+            <span class="indicator" onclick="goToSlide(3)"></span>
+            <span class="indicator" onclick="goToSlide(4)"></span>
+        </div>
+        </div>
+    </section>
+
+    <div class="productos">
+
+        <section id="papeles">
+            <h2>Papeles y Blocs</h2>
+            <div class="grid">
+                <div class="card">
+                <div class="card-carousel">
+                    <div class="card-carousel-inner">
+                    <div class="card-carousel-item">
+                        <img loading="lazy" src="img/01-bloc-papel-canvas.jpg" alt="Bloc Papel Canvas">
+                    </div>
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="card-info-item active">
+                    <h3>Bloc para Pintar con Acrílicos</h3>
+                    <p>Papel canvas-textura para pinturas acrílicas y técnicas mixtas.</p>
+                    <a href="#" class="btn-whatsapp" onclick="enviarWhatsApp(event, 'Bloc para Pintar con Acrílicos')">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                        Consultar
+                    </a>
+                    </div>
+                </div>
+                </div>
+
+                <div class="card">
+                <div class="card-carousel">
+                    <div class="card-carousel-inner">
+                    <div class="card-carousel-item">
+                        <img loading="lazy" src="img/02-block-dibujo.jpg" alt="Block de Dibujo">
+                    </div>
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="card-info-item active">
+                    <h3>Block de Dibujo</h3>
+                    <p>Papel de calidad superior para dibujo con lápiz,炭 y técnica mixta.</p>
+                    <a href="#" class="btn-whatsapp" onclick="enviarWhatsApp(event, 'Block de Dibujo')">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                        Consultar
+                    </a>
+                    </div>
+                </div>
+                </div>
+
+                <div class="card">
+                <div class="card-carousel">
+                    <div class="card-carousel-inner">
+                    <div class="card-carousel-item">
+                        <img loading="lazy" src="img/06-block-papel-calco.jpg" alt="Block Papel Calco">
+                    </div>
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="card-info-item active">
+                    <h3>Block de Papel Calco</h3>
+                    <p>Papel calco de alta transparencia para calcar dibujos y diseños.</p>
+                    <a href="#" class="btn-whatsapp" onclick="enviarWhatsApp(event, 'Block de Papel Calco')">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                        Consultar
+                    </a>
+                    </div>
+                </div>
+                </div>
+
+                <div class="card">
+                <div class="card-carousel">
+                    <div class="card-carousel-inner">
+                    <div class="card-carousel-item">
+                        <img loading="lazy" src="img/10-block-papel-calidad-superior.jpg" alt="Block Calidad Superior">
+                    </div>
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="card-info-item active">
+                    <h3>Block de Papel Calidad Superior</h3>
+                    <p>Papel profesional con textura ideal para dibujo y técnica mixta.</p>
+                    <a href="#" class="btn-whatsapp" onclick="enviarWhatsApp(event, 'Block de Papel Calidad Superior')">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                        Consultar
+                    </a>
+                    </div>
+                </div>
+                </div>
+
+                <div class="card">
+                <div class="card-carousel">
+                    <div class="card-carousel-inner">
+                    <div class="card-carousel-item">
+                        <img loading="lazy" src="img/20-block-dibujo-calidad.png" alt="Block Dibujo Calidad">
+                    </div>
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="card-info-item active">
+                    <h3>Block de Dibujo Calidad Superior</h3>
+                    <p>Papel blanco de superficie satinada, ideal para rotuladores y lápices.</p>
+                    <a href="#" class="btn-whatsapp" onclick="enviarWhatsApp(event, 'Block de Dibujo Calidad Superior')">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                        Consultar
+                    </a>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cuadernos">
+        <h2>Cuadernos y Croqueras</h2>
+        <div class="grid">
+            <div class="card">
+            <div class="card-carousel">
+                <div class="card-carousel-inner">
+                <div class="card-carousel-item">
+                    <img loading="lazy" src="img/07-croquera-blank-book.jpg" alt="Croquera Blank Book">
+                </div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="card-info-item active">
+                <h3>Croquera Blank Book</h3>
+                <p>Cuaderno en blanco para notas, bocetos y creatividad libre.</p>
+                <a href="#" class="btn-whatsapp" onclick="enviarWhatsApp(event, 'Croquera Blank Book')">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    Consultar
+                </a>
+                </div>
+            </div>
+            </div>
+
+            <div class="card">
+            <div class="card-carousel">
+                <div class="card-carousel-inner">
+                <div class="card-carousel-item">
+                    <img loading="lazy" src="img/08-croquera-cuadrada-forest.jpg" alt="Croquera Forest Green">
+                </div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="card-info-item active">
+                <h3>Croquera Cuadrada - Forest Green</h3>
+                <p>Cuaderno cuadrado con tapa verde bosque, perfecto para bocetos.</p>
+                <a href="#" class="btn-whatsapp" onclick="enviarWhatsApp(event, 'Croquera Cuadrada Forest Green')">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    Consultar
+                </a>
+                </div>
+            </div>
+            </div>
+
+            <div class="card">
+            <div class="card-carousel">
+                <div class="card-carousel-inner">
+                <div class="card-carousel-item">
+                    <img loading="lazy" src="img/09-croquera-diseno-moda.png" alt="Croquera Diseño Moda">
+                </div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="card-info-item active">
+                <h3>Croquera Diseño Moda</h3>
+                <p>Cuaderno especial para bocetos de diseño de moda y croquis.</p>
+                <a href="#" class="btn-whatsapp" onclick="enviarWhatsApp(event, 'Croquera Diseño Moda')">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    Consultar
+                </a>
+                </div>
+            </div>
+            </div>
+
+            <div class="card">
+            <div class="card-carousel">
+                <div class="card-carousel-inner">
+                <div class="card-carousel-item">
+                    <img loading="lazy" src="img/11-croquera-hoja-negra.png" alt="Croquera Hoja Negra">
+                </div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="card-info-item active">
+                <h3>Croquera Hoja Negra Premium</h3>
+                <p>Cuaderno sketchbook con hojas negras premium para lápices de colores claros.</p>
+                <a href="#" class="btn-whatsapp" onclick="enviarWhatsApp(event, 'Croquera Hoja Negra Premium')">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    Consultar
+                </a>
+                </div>
+            </div>
+            </div>
+
+            <div class="card">
+            <div class="card-carousel">
+                <div class="card-carousel-inner">
+                <div class="card-carousel-item">
+                    <img loading="lazy" src="img/13-croquera-mediana-negra.jpg" alt="Croquera Mediana Negra">
+                </div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="card-info-item active">
+                <h3>Croquera Mediana Negra</h3>
+                <p>Cuaderno de tamaño mediano con tapa negra, ideal para llevar a todos lados.</p>
+                <a href="#" class="btn-whatsapp" onclick="enviarWhatsApp(event, 'Croquera Mediana Negra')">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    Consultar
+                </a>
+                </div>
+            </div>
+            </div>
+
+            <div class="card">
+            <div class="card-carousel">
+                <div class="card-carousel-inner">
+                <div class="card-carousel-item">
+                    <img loading="lazy" src="img/14-croquera-premium.jpg" alt="Croquera Premium">
+                </div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="card-info-item active">
+                <h3>Croquera Premium 24 Hojas</h3>
+                <p>Sketchbook premium con 24 hojas de papel de alta calidad.</p>
+                <a href="#" class="btn-whatsapp" onclick="enviarWhatsApp(event, 'Croquera Premium 24 Hojas')">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    Consultar
+                </a>
+                </div>
+            </div>
+            </div>
+
+            <div class="card">
+            <div class="card-carousel">
+                <div class="card-carousel-inner">
+                <div class="card-carousel-item">
+                    <img loading="lazy" src="img/18-croquera-sketch.png" alt="Croquera Sketch">
+                </div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="card-info-item active">
+                <h3>Croquera Sketch</h3>
+                <p>Cuaderno de croquis con hojas de calidad para artistas y diseñadores.</p>
+                <a href="#" class="btn-whatsapp" onclick="enviarWhatsApp(event, 'Croquera Sketch')">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    Consultar
+                </a>
+                </div>
+            </div>
+            </div>
+        </div>
+        </section>
+
+        <section id="pinturas">
+        <h2>Pinturas</h2>
+        <div class="grid">
+            <div class="card">
+            <div class="card-carousel">
+                <div class="card-carousel-inner">
+                <div class="card-carousel-item">
+                    <img loading="lazy" src="img/04-acuarelas-lavables.png" alt="Acuarelas Lavables">
+                </div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="card-info-item active">
+                <h3>Acuarelas Lavables Multi Colores</h3>
+                <p>Set de acuarelas lavables con una gama de colores vibrantes.</p>
+                <a href="#" class="btn-whatsapp" onclick="enviarWhatsApp(event, 'Acuarelas Lavables Multi Colores')">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    Consultar
+                </a>
+                </div>
+            </div>
+            </div>
+
+            <div class="card">
+            <div class="card-carousel">
+                <div class="card-carousel-inner">
+                <div class="card-carousel-item">
+                    <img loading="lazy" src="img/05-pinturas-acrilicas-pasteles.png" alt="Pinturas Acrílicas Pasteles">
+                </div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="card-info-item active">
+                <h3>Set 12 Pinturas Acrílicas - Colores Pasteles</h3>
+                <p>12 tubos de pintura acrílica en tonos pastel. Incluye 2 pinceles.</p>
+                <a href="#" class="btn-whatsapp" onclick="enviarWhatsApp(event, 'Set 12 Pinturas Acrílicas Colores Pasteles')">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    Consultar
+                </a>
+                </div>
+            </div>
+            </div>
+
+            <div class="card">
+            <div class="card-carousel">
+                <div class="card-carousel-inner">
+                <div class="card-carousel-item">
+                    <img loading="lazy" src="img/19-set-12-pinturas-acrilicas.jpg" alt="Set Pinturas Acrílicas">
+                </div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="card-info-item active">
+                <h3>Set 12 Pinturas Acrílicas</h3>
+                <p>Set completo de 12 pinturas acrílicas con colores surtidos de alta calidad.</p>
+                <a href="#" class="btn-whatsapp" onclick="enviarWhatsApp(event, 'Set 12 Pinturas Acrílicas')">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    Consultar
+                </a>
+                </div>
+            </div>
+            </div>
+        </div>
+        </section>
+
+        <section id="pinceles">
+        <h2>Pinceles y Marcadores</h2>
+        <div class="grid">
+            <div class="card">
+            <div class="card-carousel">
+                <div class="card-carousel-inner">
+                <div class="card-carousel-item">
+                    <img loading="lazy" src="img/03-set-pinceles-acuarela.jpg" alt="Set Pinceles Acuarela">
+                </div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="card-info-item active">
+                <h3>Set 12 Pinceles para Acuarela y Acrílicos</h3>
+                <p>Pinceles de calidad profesional con cerdas de nylon. Férula de doble rizo.</p>
+                <a href="#" class="btn-whatsapp" onclick="enviarWhatsApp(event, 'Set 12 Pinceles para Acuarela y Acrílicos')">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    Consultar
+                </a>
+                </div>
+            </div>
+            </div>
+
+            <div class="card">
+            <div class="card-carousel">
+                <div class="card-carousel-inner">
+                <div class="card-carousel-item">
+                    <img loading="lazy" src="img/15-set-12-pinceles.jpg" alt="Set Pinceles Acrílicos">
+                </div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="card-info-item active">
+                <h3>Set 12 Pinceles para Acrílicos</h3>
+                <p>Pinceles de cerda sintética para pintura acrílica, variedad de puntas y tamaños.</p>
+                <a href="#" class="btn-whatsapp" onclick="enviarWhatsApp(event, 'Set 12 Pinceles para Acrílicos')">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    Consultar
+                </a>
+                </div>
+            </div>
+            </div>
+
+            <div class="card">
+            <div class="card-carousel">
+                <div class="card-carousel-inner">
+                <div class="card-carousel-item">
+                    <img loading="lazy" src="img/12-set-marcadores-doble-punta.jpg" alt="Set Marcadores Doble Punta">
+                </div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="card-info-item active">
+                <h3>Set 18 Marcadores Doble Punta - Rainbow</h3>
+                <p>Marcadores con doble punta para detalle y cobertura amplia. Colores arcoíris.</p>
+                <a href="#" class="btn-whatsapp" onclick="enviarWhatsApp(event, 'Set 18 Marcadores Doble Punta Rainbow')">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    Consultar
+                </a>
+                </div>
+            </div>
+            </div>
+        </div>
+        </section>
+
+        <section id="lapices">
+        <h2>Lápices de Colores</h2>
+        <div class="grid">
+            <div class="card">
+            <div class="card-carousel">
+                <div class="card-carousel-inner">
+                <div class="card-carousel-item">
+                    <img loading="lazy" src="img/16-set-30-lapices-colores.png" alt="Set 30 Lápices Colores">
+                </div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="card-info-item active">
+                <h3>Set 30 Lápices Colores</h3>
+                <p>30 lápices de colores con pigmentos de alto rendimiento y fácil mezcla.</p>
+                <a href="#" class="btn-whatsapp" onclick="enviarWhatsApp(event, 'Set 30 Lápices Colores')">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    Consultar
+                </a>
+                </div>
+            </div>
+            </div>
+
+            <div class="card">
+            <div class="card-carousel">
+                <div class="card-carousel-inner">
+                <div class="card-carousel-item">
+                    <img loading="lazy" src="img/17-caja-50-lapices-deluxe.jpg" alt="Caja 50 Lápices Deluxe">
+                </div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="card-info-item active">
+                <h3>Caja de 50 Lápices Deluxe</h3>
+                <p>50 lápices de colores en caja de metal. Pigmentos de alto rendimiento, suaves y fáciles de mezclar.</p>
+                <a href="#" class="btn-whatsapp" onclick="enviarWhatsApp(event, 'Caja de 50 Lápices Deluxe')">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    Consultar
+                </a>
+                </div>
+            </div>
+            </div>
+        </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>Tia Óleo - Materiales de Arte</p>
+        <p>Cel/WhatsApp: +51 993 706 366</p>
+        <p>Tu tienda de confianza para todo lo que necesitas crear</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="productos-data.js"></script>
+  <script src="puente-digital.js"></script>
+</body>
+</body>
+</html>
