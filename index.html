@@ -3,94 +3,153 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tia Óleo - Materiales de Arte</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>Tia Óleo 4 - Materiales de Arte</title>
+  <!-- Fuentes: Fraunces (serif) para titulos, IBM Plex Sans para cuerpo de texto -->
+  <!-- Libreria: Fontsource via jsDelivr CDN (no Google Fonts) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/fraunces@latest/400.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/fraunces@latest/600.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/fraunces@latest/700.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/fraunces@latest/800.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-sans@latest/300.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-sans@latest/400.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-sans@latest/500.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-sans@latest/600.css">
+  <!-- Hoja de estilos principal del sitio -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+  <!-- ========== BARRA SUPERIOR ========== -->
+  <!-- Barra oscura con numero de contacto y direccion de la tienda -->
+  <div class="topbar">
+    <a href="https://wa.me/51993706366" target="_blank" rel="noopener">Cel/WhatsApp: +51 993 706 366</a>
+    <span class="topbar-sep">|</span>
+    <a href="mailto:tiaoleo4@gmail.com">Correo: tiaoleo4@gmail.com</a>
+    <span class="topbar-sep">|</span>
+    <span>Sabandia 418 - Characato - Arequipa</span>
+  </div>
+
+  <!-- ========== ENCABEZADO / LOGOTIPO ========== -->
+  <!-- Muestra el nombre de la tienda y su eslogan -->
   <header>
-    <h1 class="logo-text">Tia Óleo</h1>
-    <p>Tu tienda de materiales de arte | Cel/WhatsApp: +51 993 706 366</p>
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-icon">&#9998;</span>
+        <h1>Tia Óleo 4</h1>
+      </div>
+      <p class="tagline">Materiales de Arte</p>
+    </div>
   </header>
 
+  <!-- ========== BARRA DE NAVEGACION ========== -->
+  <!-- Enlaces a cada categoria de productos + boton de cambio de moneda -->
   <nav>
-    <a href="#inicio">INICIO</a>
-    <a href="#papeles">PAPELES Y BLOCS</a>
-    <a href="#cuadernos">CUADERNOS</a>
-    <a href="#pinturas">PINTURAS</a>
-    <a href="#pinceles">PINCELES Y MARCADORES</a>
-    <a href="#lapices">LAPICES DE COLORES</a>
+    <div class="nav-scroll">
+      <a href="#inicio">Inicio</a>
+      <a href="#papeles">Papeles</a>
+      <a href="#cuadernos">Cuadernos</a>
+      <a href="#pinturas">Pinturas</a>
+      <a href="#pinceles">Pinceles</a>
+      <a href="#lapices">Lápices</a>
+    </div>
+    <!-- Boton y menu desplegable para cambiar la moneda de los precios -->
     <div class="nav-moneda-wrapper">
       <button class="nav-moneda" id="btnCambiarMoneda" onclick="alternarMenuMonedas()">
-        Cambiar moneda
+        &#9733; Moneda
       </button>
       <div class="menu-monedas" id="menuMonedas"></div>
     </div>
   </nav>
 
+  <!-- ========== BOTON FLOTANTE "IR AL INICIO" ========== -->
+  <!-- Aparece al hacer scroll hacia abajo, lleva al usuario al tope -->
   <button class="btn-inicio-flotante" id="btnInicio" onclick="irAlInicio()"></button>
 
+  <!-- ========== SECCION HERO / CARRUSEL PRINCIPAL ========== -->
+  <!-- Carruel de imagenes con overlay de texto y controles de navegacion -->
   <section id="inicio">
-    <div class="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item">
+    <div class="hero">
+      <!-- Contenedor de las diapositivas del carrusel -->
+      <div class="hero-slides">
+        <div class="hero-slide">
           <img src="img/05-pinturas-acrilicas-pasteles.png" alt="Pinturas Acrílicas">
-          <div class="carousel-overlay">
-            <h2>Bienvenidos a Tia Óleo</h2>
-            <p>Tu tienda especializada en <strong>materiales de arte de calidad</strong>. Papeles, pinturas, pinceles, cuadernos y todo lo que necesitas para crear.</p>
-          </div>
         </div>
-        <div class="carousel-item">
+        <div class="hero-slide">
           <img loading="lazy" src="img/01-bloc-papel-canvas.jpg" alt="Papeles para Pintar">
-          <div class="carousel-overlay">
-            <h2>Papeles de Calidad</h2>
-            <p>Blocs para acrílicos, acuarela, dibujo y papel calco. Superficies profesionales para cada técnica.</p>
-          </div>
         </div>
-        <div class="carousel-item">
+        <div class="hero-slide">
           <img loading="lazy" src="img/03-set-pinceles-acuarela.jpg" alt="Set de Pinceles">
-          <div class="carousel-overlay">
-            <h2>Pinceles Profesionales</h2>
-            <p>Sets de pinceles para acuarela, acrílicos y óleo. Calidad profesional a tu alcance.</p>
-          </div>
         </div>
-        <div class="carousel-item">
+        <div class="hero-slide">
           <img loading="lazy" src="img/17-caja-50-lapices-deluxe.jpg" alt="Lápices de Colores">
-          <div class="carousel-overlay">
-            <h2>Lápices de Colores</h2>
-            <p>Desde sets de 30 hasta cajas de 50 lápices deluxe. Pigmentos de alto rendimiento y colores vibrantes.</p>
-          </div>
         </div>
-        <div class="carousel-item">
+        <div class="hero-slide">
           <img loading="lazy" src="img/14-croquera-premium.jpg" alt="Cuadernos de Croquera">
-          <div class="carousel-overlay">
-            <h2>Cuadernos y Croqueras</h2>
-            <p>Sketchbooks premium, cuadernos de diseño moda y block de dibujo. Lleva tu arte a todas partes.</p>
-          </div>
         </div>
       </div>
-      <div class="carousel-controls">
-        <button class="carousel-btn" onclick="previousSlide()">&#8249;</button>
-        <button class="carousel-btn" onclick="nextSlide()">&#8250;</button>
+      <!-- Texto superpuesto sobre las imagenes del carrusel -->
+      <div class="hero-overlay">
+        <span class="hero-label">Bienvenidos</span>
+        <h2 class="hero-title">Tia Óleo 4</h2>
+        <p class="hero-desc">Tu tienda especializada en materiales de arte de calidad. Papeles, pinturas, pinceles, cuadernos y todo lo que necesitas para crear.</p>
       </div>
-      <div class="carousel-indicators">
-        <span class="indicator active" onclick="goToSlide(0)"></span>
-        <span class="indicator" onclick="goToSlide(1)"></span>
-        <span class="indicator" onclick="goToSlide(2)"></span>
-        <span class="indicator" onclick="goToSlide(3)"></span>
-        <span class="indicator" onclick="goToSlide(4)"></span>
+      <!-- Botones de flechas y puntos indicadores del carrusel -->
+      <div class="hero-controls">
+        <button class="hero-btn" onclick="previousSlide()">&larr;</button>
+        <div class="hero-dots">
+          <span class="dot active" onclick="goToSlide(0)"></span>
+          <span class="dot" onclick="goToSlide(1)"></span>
+          <span class="dot" onclick="goToSlide(2)"></span>
+          <span class="dot" onclick="goToSlide(3)"></span>
+          <span class="dot" onclick="goToSlide(4)"></span>
+        </div>
+        <button class="hero-btn" onclick="nextSlide()">&rarr;</button>
       </div>
     </div>
   </section>
 
-  <div class="productos" id="catalogo"></div>
+  <!-- ========== CONTENEDOR DEL CATALOGO ========== -->
+  <!-- Se llena dinamicamente con JavaScript (script.js) segun productos-data.js -->
+  <main class="catalogo" id="catalogo"></main>
 
+  <!-- ========== PIE DE PAGINA ========== -->
+  <!-- Informacion de contacto, mapa de ubicacion y derechos de autor -->
   <footer>
-    <p>Tia Óleo - Materiales de Arte</p>
-    <p>Cel/WhatsApp: +51 993 706 366</p>
-    <p>Tu tienda de confianza para todo lo que necesitas crear</p>
+    <div class="footer-inner">
+      <!-- Columna izquierda: informacion de contacto -->
+      <div class="footer-info">
+        <div class="footer-brand">
+          <span class="footer-icon">&#9998;</span>
+          <span class="footer-name">Tia Óleo 4</span>
+        </div>
+        <p class="footer-contact">Cel/WhatsApp: +51 993 706 366</p>
+        <p class="footer-email"><a href="mailto:tiaoleo4@gmail.com">Correo: tiaoleo4@gmail.com</a></p>
+        <p class="footer-address">Sabandia 418 - Characato - Arequipa</p>
+        <p class="footer-copy">Tu tienda de confianza para todo lo que necesitas crear</p>
+        <div class="footer-line"></div>
+      </div>
+      <!-- Columna derecha: mapa de Google señalando la direccion -->
+      <div class="footer-map">
+        <h3 class="footer-map-title">Ubicación</h3>
+        <iframe
+          class="mapa-embed"
+          src="https://www.google.com/maps?q=-16.4586897,-71.4929844&output=embed"
+          width="100%"
+          height="260"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Mapa de la tienda Tia Oleo 4"></iframe>
+      </div>
+    </div>
+    <p class="footer-copyright">&copy; 2026 Zecarlos Tony Davila Ttupa. Todos los derechos reservados. Creador del c&oacute;digo.</p>
   </footer>
 
+  <!-- ========== ARCHIVOS JAVASCRIPT ========== -->
+  <!-- 1. productos-data.js: Array con todos los productos del catalogo -->
+  <!-- 2. puente-digital.js: Conexion a API de tipo de cambio (open.er-api.com) -->
+  <!-- 3. script.js: Logica del carrusel, navegacion, WhatsApp y conversion de moneda -->
   <script src="productos-data.js"></script>
   <script src="puente-digital.js"></script>
   <script src="script.js"></script>

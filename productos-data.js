@@ -1,4 +1,24 @@
+/* ===========================================================
+   PRODUCTOS DATA - Base de datos del catalogo
+   -----------------------------------------------------------
+   Este archivo contiene un array con todos los productos de
+   la tienda Tia Oleo. Cada producto tiene:
+   - categoria: Used by script.js to group products into sections
+   - nombre: Nombre visible del producto
+   - descripcion: Texto descriptivo corto
+   - precio: Precio en Soles peruanos (PEN)
+   - imagen: Ruta relativa a la imagen del producto
+
+   Los precios se almacenan en Soles (PEN) como moneda base.
+   La conversion a otras monedas se hace en tiempo real por
+   script.js usando las tasas de puente-digital.js.
+   =========================================================== */
+
 const productos = [
+  // ==========================================
+  // CATEGORIA: Papeles y Blocs
+  // Blocs de papel para dibujo, pintura y calco
+  // ==========================================
   {
     categoria: "Papeles y Blocs",
     nombre: "Bloc para Pintar con Acrílicos",
@@ -34,6 +54,11 @@ const productos = [
     precio: 30,
     imagen: "img/20-block-dibujo-calidad.png",
   },
+
+  // ==========================================
+  // CATEGORIA: Cuadernos y Croqueras
+  // Sketchbooks, croqueras y cuadernos de boceto
+  // ==========================================
   {
     categoria: "Cuadernos y Croqueras",
     nombre: "Croquera Blank Book",
@@ -83,6 +108,11 @@ const productos = [
     precio: 26,
     imagen: "img/18-croquera-sketch.png",
   },
+
+  // ==========================================
+  // CATEGORIA: Pinturas
+  // Acuarelas y pinturas acrilicas en tubo
+  // ==========================================
   {
     categoria: "Pinturas",
     nombre: "Acuarelas Lavables Multi Colores",
@@ -104,6 +134,12 @@ const productos = [
     precio: 48,
     imagen: "img/19-set-12-pinturas-acrilicas.jpg",
   },
+
+  // ==========================================
+  // CATEGORIA: Pinceles y Marcadores
+  // Sets de pinceles para distintas tecnicas
+  // y marcadores de doble punta
+  // ==========================================
   {
     categoria: "Pinceles y Marcadores",
     nombre: "Set 12 Pinceles para Acuarela y Acrílicos",
@@ -125,6 +161,11 @@ const productos = [
     precio: 68,
     imagen: "img/12-set-marcadores-doble-punta.jpg",
   },
+
+  // ==========================================
+  // CATEGORIA: Lapices de Colores
+  // Sets de lapices de colores en caja
+  // ==========================================
   {
     categoria: "Lápices de Colores",
     nombre: "Set 30 Lápices Colores",
