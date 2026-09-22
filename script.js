@@ -164,6 +164,25 @@ function enviarWhatsApp(event, nombreProducto) {
 }
 
 // ===========================================================
+// 4b. COTIZACION POR MAYOR (canal para colegios/talleres)
+// -----------------------------------------------------------
+// La tienda vende al detalle por defecto. Este aviso permite
+// pedir precio por cantidad con comprobante por el mismo WhatsApp.
+// ===========================================================
+
+function solicitarCotizacionMayorista(event) {
+  if (event) event.preventDefault();
+
+  const numeroWhatsApp = '51993706366';
+
+  const mensaje = 'Hola Tía Óleo 4, necesito una cotización por cantidad para mi aula/taller. Me interesa: ___, cantidad aprox.: ___. ¿Me indican precio por mayor y tiempo de entrega? Gracias.';
+  const mensajeCodificado = encodeURIComponent(mensaje);
+
+  const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
+  window.open(urlWhatsApp, '_blank');
+}
+
+// ===========================================================
 // 5. SISTEMA DE CAMBIO DE MONEDA
 // -----------------------------------------------------------
 // Consulta la API de tipo de cambio (open.er-api.com) y
@@ -308,7 +327,10 @@ function aplicarMonedaACatalogo(opcion) {
 /**
  * Maneja la seleccion de una moneda desde el menu.
  * PEN restaura precios originales, otras monedas aplican conversion.
+ * Guarda la seleccion en monedaActual para reaplicarla al buscar/paginar.
  */
+let monedaActual = null;
+
 async function elegirMoneda(codigo) {
   cerrarMenuMonedas();
 
@@ -316,6 +338,7 @@ async function elegirMoneda(codigo) {
 
   // PEN = volver a precios originales en Soles
   if (codigo === 'PEN') {
+    monedaActual = null;
     aplicarMonedaACatalogo(null);
     return;
   }
@@ -323,11 +346,12 @@ async function elegirMoneda(codigo) {
   const tasa = tasas[codigo];
   if (typeof tasa !== 'number') return;
 
-  aplicarMonedaACatalogo({
+  monedaActual = {
     codigo,
     simbolo: formatearSimbolo(codigo),
     tasa
-  });
+  };
+  aplicarMonedaACatalogo(monedaActual);
 }
 
 // Cerrar el menu si se hace clic fuera de el
@@ -436,4 +460,202 @@ document.addEventListener('click', (evento) => {
       );
     })
     .join('');
+})();
+
+// ===========================================================
+// 7. BUSCADOR DEL CATALOGO (Sesion 4)
+// -----------------------------------------------------------
+// Idea de marketplace (eBay/Alibaba/Amazon): no redibujar todo
+// en cada busqueda. Se crea un INDICE en memoria una sola vez
+// (texto normalizado por producto) y solo se renderiza la
+// pagina actual de resultados (paginacion).
+// ===========================================================
+
+const POR_PAGINA = 6;
+
+let vistaCompletaHTML = document.getElementById('catalogo')
+  ? document.getElementById('catalogo').innerHTML
+  : '';
+let resultadosActuales = [];
+let paginaActual = 1;
+let consultaActual = '';
+let temporizadorBusqueda = null;
+
+/** Quita tildes, pasa a minusculas y recorta espacios */
+function normalizarTexto(s) {
+  return String(s || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .trim();
+}
+
+// Indice en memoria: se construye una sola vez al cargar
+const INDICE_MEMORIA =
+  typeof productos === 'undefined'
+    ? []
+    : productos.map(function (p) {
+        return {
+          ref: p,
+          texto: normalizarTexto(p.nombre + ' ' + p.descripcion + ' ' + p.categoria)
+        };
+      });
+
+/** Busca por tokens: todas las palabras deben aparecer (AND) */
+function buscarProductos(query) {
+  const q = normalizarTexto(query);
+  if (!q) return [];
+  const tokens = q.split(/\s+/).filter(Boolean);
+  return INDICE_MEMORIA.filter(function (entry) {
+    return tokens.every(function (t) {
+      return entry.texto.includes(t);
+    });
+  }).map(function (entry) {
+    return entry.ref;
+  });
+}
+
+function crearTarjetaBusqueda(p) {
+  const nombreEscapado = String(p.nombre).replace(/'/g, "\\'");
+  return (
+    '<div class="card" data-precio="' +
+    p.precio +
+    '"><div class="card-carousel"><div class="card-carousel-inner">' +
+    '<div class="card-carousel-item"><img loading="lazy" src="' +
+    p.imagen +
+    '" alt="' +
+    p.nombre +
+    '"></div></div></div>' +
+    '<div class="info"><h3>' +
+    p.nombre +
+    '</h3><p>' +
+    p.descripcion +
+    '</p><p class="categoria-origen">' +
+    p.categoria +
+    '</p>' +
+    '<p class="precio" data-precio="' +
+    p.precio +
+    '">S/ ' +
+    p.precio.toFixed(2) +
+    '</p>' +
+    '<a href="#" class="btn-whatsapp" onclick="enviarWhatsApp(event, \'' +
+    nombreEscapado +
+    '\')">' +
+    'WhatsApp</a></div></div>'
+  );
+}
+
+/** Dibuja solo la pagina actual + controles de paginacion */
+function renderizarBusqueda() {
+  const contenedor = document.getElementById('catalogo');
+  const contador = document.getElementById('contadorResultados');
+  if (!contenedor) return;
+
+  // Sin consulta: restaurar vista por categorias
+  if (!consultaActual) {
+    contenedor.innerHTML = vistaCompletaHTML;
+    if (contador) contador.textContent = '';
+    if (typeof monedaActual !== 'undefined' && monedaActual) {
+      aplicarMonedaACatalogo(monedaActual);
+    }
+    return;
+  }
+
+  const total = resultadosActuales.length;
+  const totalPaginas = Math.max(1, Math.ceil(total / POR_PAGINA));
+  if (paginaActual > totalPaginas) paginaActual = totalPaginas;
+
+  if (contador) {
+    contador.textContent =
+      total === 0
+        ? `Sin resultados para “${consultaActual}”`
+        : `${total} resultado${total === 1 ? '' : 's'} para “${consultaActual}” — pág. ${paginaActual}/${totalPaginas}`;
+  }
+
+  if (total === 0) {
+    contenedor.innerHTML =
+      '<section class="busqueda-vacia"><h2>Sin resultados</h2>' +
+      '<div class="section-line"></div>' +
+      '<p>No encontramos nada para “' +
+      consultaActual +
+      '”. Prueba con: acuarela, croquera, pincel, bloc, lapices.</p></section>';
+    return;
+  }
+
+  const inicio = (paginaActual - 1) * POR_PAGINA;
+  const pagina = resultadosActuales.slice(inicio, inicio + POR_PAGINA);
+
+  let botones = '';
+  for (let i = 1; i <= totalPaginas; i++) {
+    botones +=
+      '<button type="button" class="pag-btn' +
+      (i === paginaActual ? ' activo' : '') +
+      '" onclick="irAPagina(' +
+      i +
+      ')">' +
+      i +
+      '</button>';
+  }
+
+  contenedor.innerHTML =
+    '<section><h2>Resultados</h2><div class="section-line"></div>' +
+    '<div class="grid">' +
+    pagina.map(crearTarjetaBusqueda).join('') +
+    '</div>' +
+    (totalPaginas > 1
+      ? '<div class="paginacion">' +
+        '<button type="button" class="pag-btn" onclick="irAPagina(' +
+        (paginaActual - 1) +
+        ')"' +
+        (paginaActual <= 1 ? ' disabled' : '') +
+        '>← Anterior</button>' +
+        botones +
+        '<button type="button" class="pag-btn" onclick="irAPagina(' +
+        (paginaActual + 1) +
+        ')"' +
+        (paginaActual >= totalPaginas ? ' disabled' : '') +
+        '>Siguiente →</button></div>'
+      : '') +
+    '</section>';
+
+  if (typeof monedaActual !== 'undefined' && monedaActual) {
+    aplicarMonedaACatalogo(monedaActual);
+  }
+}
+
+function irAPagina(n) {
+  const totalPaginas = Math.max(1, Math.ceil(resultadosActuales.length / POR_PAGINA));
+  if (n < 1 || n > totalPaginas) return;
+  paginaActual = n;
+  renderizarBusqueda();
+  const buscador = document.querySelector('.buscador-catalogo');
+  if (buscador) buscador.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function limpiarBusqueda() {
+  const input = document.getElementById('inputBusqueda');
+  const btn = document.getElementById('btnLimpiarBusqueda');
+  if (input) input.value = '';
+  if (btn) btn.hidden = true;
+  consultaActual = '';
+  resultadosActuales = [];
+  paginaActual = 1;
+  renderizarBusqueda();
+}
+
+// Escucha con debounce: no busca en cada tecla, espera 200ms
+(function initBuscador() {
+  const input = document.getElementById('inputBusqueda');
+  const btn = document.getElementById('btnLimpiarBusqueda');
+  if (!input) return;
+  input.addEventListener('input', function () {
+    clearTimeout(temporizadorBusqueda);
+    temporizadorBusqueda = setTimeout(function () {
+      consultaActual = input.value.trim();
+      paginaActual = 1;
+      resultadosActuales = consultaActual ? buscarProductos(consultaActual) : [];
+      if (btn) btn.hidden = !consultaActual;
+      renderizarBusqueda();
+    }, 200);
+  });
 })();

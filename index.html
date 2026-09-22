@@ -110,6 +110,19 @@
 
   <!-- ========== CONTENEDOR DEL CATALOGO ========== -->
   <!-- Se llena dinamicamente con JavaScript (script.js) segun productos-data.js -->
+  <!-- NOTA MODELO (para el informe, no visible como jerga): opera B2C al detalle;
+       el aviso de abajo habilita B2B por volumen sin romper el flujo actual. -->
+  <div class="banda-modelo" id="ventas-mayor">
+    <p class="banda-modelo-texto">¿Necesitas varios sets para tu aula, taller o librería? Te preparamos precio por cantidad con comprobante.</p>
+    <a href="#" class="btn-mayorista" onclick="solicitarCotizacionMayorista(event)">Pedir cotización por mayor</a>
+  </div>
+  <!-- ========== BUSCADOR DEL CATALOGO ========== -->
+  <!-- Filtra productos en memoria y pagina resultados (estilo marketplace) -->
+  <div class="buscador-catalogo">
+    <input type="search" id="inputBusqueda" placeholder="Buscar en el catálogo… (ej: acuarela, croquera, pincel)" autocomplete="off" aria-label="Buscar productos">
+    <button type="button" id="btnLimpiarBusqueda" class="btn-limpiar" onclick="limpiarBusqueda()" hidden>✕</button>
+    <p class="buscador-contador" id="contadorResultados" aria-live="polite"></p>
+  </div>
   <main class="catalogo" id="catalogo"></main>
 
   <!-- ========== PIE DE PAGINA ========== -->

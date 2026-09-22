@@ -636,6 +636,165 @@ section .section-line {
 
 
 /* ===========================================================
+   BUSCADOR DEL CATALOGO - Filtra en memoria + paginacion
+   Tira clara con el mismo lenguaje del sitio.
+   =========================================================== */
+.buscador-catalogo {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 22px 24px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  align-items: center;
+}
+
+.buscador-catalogo input[type="search"] {
+  flex: 1 1 280px;
+  max-width: 520px;
+  padding: 12px 16px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+.buscador-catalogo input[type="search"]:focus {
+  border-color: var(--accent);
+}
+
+.btn-limpiar {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all var(--transition);
+}
+
+.btn-limpiar:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.buscador-contador {
+  flex: 1 1 100%;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  letter-spacing: 0.3px;
+}
+
+/* Etiqueta de categoria en resultados de busqueda */
+.categoria-origen {
+  font-size: 0.7rem !important;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-light) !important;
+}
+
+/* Controles de paginacion */
+.paginacion {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 32px;
+}
+
+.pag-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-dark);
+  padding: 9px 16px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.pag-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.pag-btn.activo {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.pag-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.busqueda-vacia {
+  text-align: center;
+}
+
+.busqueda-vacia .section-line {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.busqueda-vacia p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* ===========================================================
+   AVISO POR MAYOR - Franja sutil entre hero y catalogo
+   Usa los mismos tonos del sitio, sin parecer banner externo.
+   =========================================================== */
+.banda-modelo {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.banda-modelo-texto {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.btn-mayorista {
+  display: inline-block;
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 9px 18px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.btn-mayorista:hover {
+  background: var(--accent);
+  color: white;
+}
+
+/* ===========================================================
    FOOTER - Pie de pagina con informacion de contacto
    =========================================================== */
 footer {
