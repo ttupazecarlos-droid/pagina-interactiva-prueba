@@ -66,9 +66,10 @@
       <section id="tab-cotizar" class="admin-card" hidden>
         <h2>Nueva cotización</h2>
         <div class="admin-grid2">
-          <label>Cliente<input type="text" id="cotNombre" placeholder="Nombre del cliente *" maxlength="120"></label>
-          <label>Celular<input type="tel" id="cotTelefono" placeholder="Celular / WhatsApp" maxlength="20"></label>
+          <label>Cliente<input type="text" id="cotNombre" placeholder="Nombre del cliente *" maxlength="120" oninput="actualizarBotonWsp()"></label>
+          <label>Celular / WhatsApp<input type="tel" id="cotTelefono" placeholder="Ej: 993706366" maxlength="20" oninput="actualizarBotonWsp()"></label>
         </div>
+        <p class="admin-ayuda">💡 Tip: escribe el celular del cliente (9 dígitos) y pulsa <strong>Enviar por WhatsApp</strong>. Si lo dejas vacío, WhatsApp te dejará elegir el contacto.</p>
         <input type="search" id="cotBuscar" placeholder="Agregar producto… (escribe para buscar)" oninput="buscarParaCotizar()">
         <div class="cot-resultados" id="cotResultados"></div>
         <h3>Detalle</h3>
@@ -79,7 +80,7 @@
         <p class="cot-total">Total: <strong id="cotTotal">S/ 0.00</strong></p>
         <div class="admin-acciones">
           <button type="button" class="abtn primario" onclick="guardarCotizacion()">Guardar cotización</button>
-          <button type="button" class="abtn" id="btnCotWsp" onclick="enviarCotWsp()" disabled>Enviar por WhatsApp</button>
+          <button type="button" class="abtn wsp" id="btnCotWsp" onclick="enviarCotWsp()" disabled>🟢 Enviar por WhatsApp</button>
         </div>
         <p class="admin-msg" id="cotMsg" aria-live="polite"></p>
       </section>

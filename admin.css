@@ -52,6 +52,8 @@ body {
 .abtn:hover { border-color: #c8553d; color: #c8553d; }
 .abtn.primario { background: #c8553d; border-color: #c8553d; color: #fff; }
 .abtn.primario:hover { background: #a3402d; color: #fff; }
+.abtn.wsp { background: #25d366; border-color: #25d366; color: #fff; }
+.abtn.wsp:hover:not(:disabled) { background: #1da851; border-color: #1da851; color: #fff; }
 .abtn:disabled { opacity: 0.45; cursor: default; }
 .abtn.chico { padding: 8px 14px; font-size: 0.72rem; }
 .admin-barra { margin: 14px 0 4px; }

@@ -176,6 +176,16 @@ function renderCot() {
       '<td><button type="button" class="abtn chico" onclick="cambiarCantCot(' + l.id + ',-999)">✕</button></td></tr>';
   }).join('') || '<tr><td colspan="5" class="mutes">Vacía: busca y añade productos.</td></tr>';
   document.getElementById('cotTotal').textContent = 'S/ ' + total.toFixed(2);
+  actualizarBotonWsp();
+}
+
+/* El botón de WhatsApp debe funcionar de forma natural:
+   se activa cuando hay productos en el detalle (aunque aún
+   no se haya guardado) o cuando hay una cotización guardada. */
+function actualizarBotonWsp() {
+  const btn = document.getElementById('btnCotWsp');
+  if (!btn) return;
+  btn.disabled = !(cotLineas.length > 0 || ultimaCot);
 }
 
 async function guardarCotizacion() {
@@ -199,21 +209,83 @@ async function guardarCotizacion() {
       tel: document.getElementById('cotTelefono').value.trim(),
       lineas: d.lineas
     };
-    document.getElementById('btnCotWsp').disabled = false;
+    actualizarBotonWsp();
     msg.className = 'admin-msg ok';
-    msg.textContent = '✓ ' + d.mensaje;
+    msg.textContent = '✓ ' + d.mensaje + ' Ya puedes enviarla por WhatsApp.';
     cotLineas = [];
     renderCot();
     cargarHistorial();
   } catch (e) { msg.textContent = '✕ ' + e.message; }
 }
 
+/* ---------- WhatsApp: normalización y envío ---------- */
+// Deja solo dígitos y completa con código país Perú (51) si es un celular de 9 dígitos.
+function normalizarTelefonoPeru(tel) {
+  const dig = String(tel || '').replace(/\D/g, '');
+  if (!dig) return '';
+  if (dig.length === 11 && dig.startsWith('51')) return dig; // ya tiene 51 + 9 dígitos
+  if (dig.length === 9 && dig.startsWith('9')) return '51' + dig; // celular PE sin código
+  if (dig.length >= 10 && dig.length <= 15) return dig; // otro país / fijo válido
+  return '';
+}
+
+function fmt(n) { return 'S/ ' + Number(n || 0).toFixed(2); }
+
+function abrirWhatsApp(destDigitos, texto) {
+  const url = destDigitos
+    ? 'https://wa.me/' + destDigitos + '?text=' + encodeURIComponent(texto)
+    : 'https://wa.me/?text=' + encodeURIComponent(texto); // sin número: elige contacto
+  const win = window.open(url, '_blank');
+  if (!win) {
+    // Si el navegador bloqueó la ventana, redirigir en la misma pestaña
+    // y dejar el texto copiado para pegarlo manualmente.
+    try { navigator.clipboard.writeText(texto); } catch (e) {}
+    window.location.href = url;
+  }
+  return url;
+}
+
 function enviarCotWsp() {
-  if (!ultimaCot) return;
-  const lineas = ultimaCot.lineas.map(l => '• ' + l.nombre + ' x' + l.cantidad + ' = S/ ' + l.subtotal.toFixed(2)).join('\n');
-  const texto = 'Hola ' + ultimaCot.cliente + ', te envío la cotización #' + ultimaCot.id + ' de Tía Óleo 4:\n' + lineas + '\nTotal: S/ ' + ultimaCot.total.toFixed(2);
-  const dest = /^[0-9+\s-]{6,20}$/.test(ultimaCot.tel || '') ? ultimaCot.tel.replace(/[\s-]/g, '') : TIENDA_WSP;
-  window.open('https://wa.me/' + dest + '?text=' + encodeURIComponent(texto), '_blank');
+  const msg = document.getElementById('cotMsg');
+  // Si hay borrador sin guardar, se envía el borrador (lo más natural).
+  // Si no, se envía la última cotización guardada.
+  let lineas, total, cliente, tel, cotId = null;
+  if (cotLineas.length > 0) {
+    lineas = cotLineas.map(l => ({ nombre: l.nombre, cantidad: l.cantidad, subtotal: l.precio * l.cantidad }));
+    total = cotLineas.reduce((a, l) => a + l.precio * l.cantidad, 0);
+    cliente = document.getElementById('cotNombre').value.trim();
+    tel = document.getElementById('cotTelefono').value.trim();
+    if (ultimaCot) cotId = ultimaCot.id;
+  } else if (ultimaCot) {
+    lineas = (ultimaCot.lineas || []).map(l => ({
+      nombre: l.nombre || l.texto || 'Producto',
+      cantidad: Number(l.cantidad) || 1,
+      subtotal: Number(l.subtotal)
+    }));
+    total = Number(ultimaCot.total);
+    cliente = ultimaCot.cliente || '';
+    tel = ultimaCot.tel || document.getElementById('cotTelefono').value.trim();
+    cotId = ultimaCot.id;
+  } else {
+    msg.className = 'admin-msg';
+    msg.textContent = 'Agrega al menos un producto para enviar la cotización.';
+    return;
+  }
+  if (!lineas.length) {
+    msg.className = 'admin-msg';
+    msg.textContent = 'Agrega al menos un producto para enviar la cotización.';
+    return;
+  }
+  const saludo = cliente ? 'Hola ' + cliente + ', te envío' : 'Hola, te envío';
+  const titulo = cotId ? saludo + ' la cotización #' + cotId + ' de *Tía Óleo 4*:' : saludo + ' la cotización de *Tía Óleo 4*:';
+  const detalle = lineas.map(l => '• ' + l.nombre + ' x' + l.cantidad + ' = ' + fmt(l.subtotal)).join('\n');
+  const texto = titulo + '\n' + detalle + '\nTotal: *' + fmt(total) + '*\n¿Confirmamos tu pedido? 😊';
+  const dest = normalizarTelefonoPeru(tel);
+  abrirWhatsApp(dest, texto);
+  msg.className = 'admin-msg ok';
+  msg.textContent = dest
+    ? '✓ Abriendo WhatsApp hacia ' + dest + '…'
+    : '✓ Abriendo WhatsApp: elige el contacto del cliente y pulsa enviar.';
 }
 
 /* ---------- Pedidos ---------- */
@@ -306,10 +378,12 @@ async function reenviarCot(id) {
     const d = await r.json();
     const c = (d.cotizaciones || []).find(x => x.id === id);
     if (!c) return;
-    const lineas = c.items.map(i => '• ' + i.texto + ' = S/ ' + i.subtotal.toFixed(2)).join('\n');
-    const texto = 'Hola ' + c.cliente_nombre + ', te reenvío la cotización #' + c.id + ' de Tía Óleo 4:\n' + lineas + '\nTotal: S/ ' + c.total.toFixed(2);
-    const dest = /^[0-9+\s-]{6,20}$/.test(c.cliente_telefono || '') ? c.cliente_telefono.replace(/[\s-]/g, '') : TIENDA_WSP;
-    window.open('https://wa.me/' + dest + '?text=' + encodeURIComponent(texto), '_blank');
+    const lineas = c.items.map(i => '• ' + i.texto + ' = ' + fmt(i.subtotal)).join('\n');
+    const nombre = c.cliente_nombre || '';
+    const saludo = nombre ? 'Hola ' + nombre + ', te reenvío' : 'Hola, te reenvío';
+    const texto = saludo + ' la cotización #' + c.id + ' de *Tía Óleo 4*:\n' + lineas + '\nTotal: *' + fmt(c.total) + '*';
+    const dest = normalizarTelefonoPeru(c.cliente_telefono);
+    abrirWhatsApp(dest, texto);
   } catch (e) {}
 }
 
