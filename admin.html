@@ -45,9 +45,10 @@
         <button type="button" class="atab" data-tab="historial" onclick="verTab('historial')">📋 Cotizaciones</button>
       </nav>
 
-      <!-- Inventario: buscar + editar stock y precio -->
+      <!-- Inventario: buscar + editar toda la info, stock y precio -->
       <section id="tab-inventario" class="admin-card">
         <h2>Inventario</h2>
+        <p class="admin-ayuda">Edita precio y stock al instante, o pulsa <strong>✎ Editar</strong> para cambiar nombre, descripción, categoría, marca y más.</p>
         <div class="admin-barra">
           <button type="button" class="abtn primario" onclick="abrirModalNuevo()">＋ Nuevo producto</button>
         </div>
@@ -56,7 +57,7 @@
           <select id="invCategoria" onchange="cargarInventario()"><option value="">Todas las categorías</option></select>
         </div>
         <div class="tabla-scroll"><table class="admin-tabla">
-          <thead><tr><th>Producto</th><th>Foto</th><th>Categoría</th><th>Spec</th><th>Precio S/</th><th>Stock</th><th></th></tr></thead>
+          <thead><tr><th>Producto</th><th>Foto</th><th>Categoría</th><th>Spec</th><th>Precio S/</th><th>Stock</th><th>Acciones</th></tr></thead>
           <tbody id="invBody"></tbody>
         </table></div>
         <p class="admin-msg" id="invMsg" aria-live="polite"></p>
@@ -140,6 +141,42 @@
         <button type="button" class="abtn" onclick="cerrarModalNuevo()">Cancelar</button>
       </div>
       <p class="admin-msg" id="npMsg" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <!-- ========== EDITAR PRODUCTO (toda la información) ========== -->
+  <div class="modal-admin-fondo" id="modalEditarFondo" onclick="if(event.target.id==='modalEditarFondo')cerrarModalEditar()">
+    <div class="modal-admin" role="dialog" aria-modal="true" aria-labelledby="modalEditarTitulo">
+      <div class="modal-admin-head">
+        <h2 id="modalEditarTitulo">Editar producto</h2>
+        <button type="button" class="modal-cerrar" onclick="cerrarModalEditar()" aria-label="Cerrar">✕</button>
+      </div>
+      <input type="hidden" id="epId">
+      <div class="admin-grid2">
+        <label>Nombre *<input type="text" id="epNombre" maxlength="150"></label>
+        <label>Categoría *<select id="epCategoria"></select></label>
+        <label>Calidad *<select id="epCalidad"></select></label>
+        <label>Marca<select id="epMarca"><option value="">—</option></select></label>
+        <label>Proveedor<select id="epProveedor"><option value="">—</option></select></label>
+        <label>Precio S/ *<input type="number" id="epPrecio" min="0.5" step="0.5"></label>
+        <label>Stock *<input type="number" id="epStock" min="0" max="9999" step="1"></label>
+        <label>Gramaje (papel)<select id="epGramaje"><option value="">— No aplica</option></select></label>
+        <label>Dureza (grafito)<select id="epDureza"><option value="">— No aplica</option></select></label>
+        <label>Cerda (pincel)<select id="epCerda"><option value="">— No aplica</option></select></label>
+        <label>Tipo pintura<select id="epTipo"><option value="">— No aplica</option></select></label>
+        <label>Cantidad *<input type="number" id="epCantidad" min="1"></label>
+        <label>Unidad *<input type="text" id="epUnidad" maxlength="30"></label>
+        <label class="check"><input type="checkbox" id="epDestacado"> Destacado</label>
+        <label class="check"><input type="checkbox" id="epActivo"> Visible en tienda</label>
+      </div>
+      <label>Descripción *<input type="text" id="epDescripcion" maxlength="255"></label>
+      <label>¿Qué incluye? (detalle de venta) *<input type="text" id="epDetalle" maxlength="500"></label>
+      <label>Contenido *<input type="text" id="epContenido" maxlength="120"></label>
+      <div class="admin-acciones">
+        <button type="button" class="abtn primario" onclick="guardarEdicion()">Guardar cambios</button>
+        <button type="button" class="abtn" onclick="cerrarModalEditar()">Cancelar</button>
+      </div>
+      <p class="admin-msg" id="epMsg" aria-live="polite"></p>
     </div>
   </div>
 

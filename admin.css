@@ -139,6 +139,7 @@ body {
 .cant-ctl { display: flex; align-items: center; gap: 6px; }
 .cant-ctl button { width: 28px; height: 28px; border: 1px solid #cfccc7; background: #fff; cursor: pointer; font-size: 1rem; }
 .cant-ctl button:hover { border-color: #c8553d; color: #c8553d; }
+.fila-btns { display: flex; gap: 6px; flex-wrap: wrap; }
 
 @media (max-width: 640px) {
   .admin-filtros, .admin-grid2 { grid-template-columns: 1fr; }

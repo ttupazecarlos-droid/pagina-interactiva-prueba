@@ -85,15 +85,18 @@ async function cargarInventario() {
     body.innerHTML = d.productos.map(p => {
       const spec = [p.gramaje ? p.gramaje + ' g' : '', p.dureza ? 'D.' + p.dureza : '', p.cantidad + ' ' + p.unidad].filter(Boolean).join(' · ');
       const bajo = p.stock <= 5;
+      const inactivo = p.activo == 0;
       const foto = p.imagen ? '<img class="inv-thumb" src="' + p.imagen + '" alt="Foto actual" loading="lazy" onerror="this.remove()"><br>' : '';
+      const tags = (p.destacado == 1 ? ' ⭐' : '') + (inactivo ? ' <span class="estado anulado">oculto</span>' : '');
       return '<tr class="' + (bajo ? 'fila-bajo' : '') + '">' +
-        '<td><strong>' + p.nombre + '</strong><br><span class="mutes">' + (p.marca || '') + '</span></td>' +
+        '<td><strong>' + p.nombre + '</strong>' + tags + '<br><span class="mutes">' + (p.marca || '') + '</span></td>' +
         '<td>' + foto + '<button type="button" class="abtn chico" onclick="abrirModalFoto(' + p.id + ')">Foto</button></td>' +
         '<td>' + p.categoria + '</td>' +
         '<td class="mutes">' + spec + '</td>' +
         '<td><input type="number" id="pr-' + p.id + '" value="' + p.precio.toFixed(2) + '" min="0.5" step="0.5"></td>' +
         '<td><input type="number" id="st-' + p.id + '" value="' + p.stock + '" min="0" max="9999" step="1" class="' + (bajo ? 'stock-rojo' : '') + '"></td>' +
-        '<td><button type="button" class="abtn chico" onclick="guardarProducto(' + p.id + ')">Guardar</button></td></tr>';
+        '<td><div class="fila-btns"><button type="button" class="abtn chico" onclick="guardarProducto(' + p.id + ')">Guardar</button>' +
+        '<button type="button" class="abtn chico" onclick="abrirModalEditar(' + p.id + ')">✎ Editar</button></div></td></tr>';
     }).join('') || '<tr><td colspan="7">Sin resultados.</td></tr>';
     pintarStats(d.productos, null);
     msg.textContent = '';
@@ -406,17 +409,20 @@ function pintarStats(inv, ped) {
 /* ---------- Nuevo producto (todas las tablas) ---------- */
 let listasCache = null;
 
+async function asegurarListas() {
+  if (listasCache) return listasCache;
+  try {
+    const r = await fetch('api/admin-productos.php');
+    const d = await r.json();
+    if (d.ok && d.listas) listasCache = d.listas;
+  } catch (e) {}
+  return listasCache || {};
+}
+
 async function abrirModalNuevo() {
   document.getElementById('modalNuevoFondo').classList.add('abierto');
   document.getElementById('npMsg').textContent = '';
-  if (!listasCache) {
-    try {
-      const r = await fetch('api/admin-productos.php');
-      const d = await r.json();
-      if (d.ok && d.listas) listasCache = d.listas;
-    } catch (e) {}
-  }
-  const L = listasCache || {};
+  const L = await asegurarListas();
   llenarSel('npCategoria', L.categorias, 'nombre', true);
   llenarSel('npCalidad', L.calidades, 'nombre', true);
   llenarSel('npMarca', L.marcas, 'nombre', false);
@@ -482,6 +488,88 @@ async function guardarNuevo() {
     msg.className = 'admin-msg ok';
     cargarInventario();
     setTimeout(cerrarModalNuevo, 1400);
+  } catch (e) { msg.textContent = '✕ ' + e.message; }
+}
+
+/* ---------- Editar producto (toda la información) ---------- */
+async function abrirModalEditar(id) {
+  const msg = document.getElementById('epMsg');
+  msg.className = 'admin-msg';
+  msg.textContent = 'Cargando…';
+  document.getElementById('modalEditarFondo').classList.add('abierto');
+  document.getElementById('modalEditarTitulo').textContent = 'Editar producto #' + id;
+  const L = await asegurarListas();
+  llenarSel('epCategoria', L.categorias, 'nombre', true);
+  llenarSel('epCalidad', L.calidades, 'nombre', true);
+  llenarSel('epMarca', L.marcas, 'nombre', false);
+  llenarSel('epProveedor', L.proveedores, 'nombre', false);
+  llenarSel('epGramaje', (L.gramajes || []).map(g => ({ id: g.id, nombre: g.valor + ' g/m²' })), 'nombre', false);
+  llenarSel('epDureza', (L.durezas || []).map(d => ({ id: d.id, nombre: d.codigo })), 'nombre', false);
+  llenarSel('epCerda', L.cerdas, 'nombre', false);
+  llenarSel('epTipo', L.tipos_pintura, 'nombre', false);
+  try {
+    const r = await fetch('api/admin-productos.php?id=' + id);
+    const d = await r.json();
+    if (!d.ok) throw new Error(d.error || 'No se pudo cargar.');
+    const p = d.producto;
+    document.getElementById('epId').value = p.id;
+    document.getElementById('epNombre').value = p.nombre || '';
+    document.getElementById('epCategoria').value = p.categoria_id || '';
+    document.getElementById('epCalidad').value = p.calidad_id || '';
+    document.getElementById('epMarca').value = p.marca_id || '';
+    document.getElementById('epProveedor').value = p.proveedor_id || '';
+    document.getElementById('epPrecio').value = Number(p.precio).toFixed(2);
+    document.getElementById('epStock').value = p.stock;
+    document.getElementById('epGramaje').value = p.gramaje_id || '';
+    document.getElementById('epDureza').value = p.dureza_id || '';
+    document.getElementById('epCerda').value = p.cerda_id || '';
+    document.getElementById('epTipo').value = p.tipo_pintura_id || '';
+    document.getElementById('epCantidad').value = p.cantidad;
+    document.getElementById('epUnidad').value = p.unidad || '';
+    document.getElementById('epDescripcion').value = p.descripcion || '';
+    document.getElementById('epDetalle').value = p.detalle_venta || '';
+    document.getElementById('epContenido').value = p.contenido || '';
+    document.getElementById('epDestacado').checked = p.destacado == 1;
+    document.getElementById('epActivo').checked = p.activo != 0;
+    msg.textContent = '';
+  } catch (e) { msg.textContent = '✕ ' + e.message; }
+}
+
+function cerrarModalEditar() {
+  document.getElementById('modalEditarFondo').classList.remove('abierto');
+}
+
+async function guardarEdicion() {
+  const msg = document.getElementById('epMsg');
+  msg.className = 'admin-msg';
+  const val = (id) => document.getElementById(id).value.trim();
+  const num = (id) => document.getElementById(id).value;
+  msg.textContent = 'Guardando…';
+  try {
+    const r = await fetch('api/admin-productos.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        accion: 'actualizar',
+        id: parseInt(val('epId'), 10),
+        nombre: val('epNombre'), descripcion: val('epDescripcion'),
+        detalle_venta: val('epDetalle'), contenido: val('epContenido'), unidad: val('epUnidad'),
+        categoria_id: parseInt(num('epCategoria'), 10), calidad_id: parseInt(num('epCalidad'), 10),
+        marca_id: parseInt(num('epMarca'), 10) || 0, proveedor_id: parseInt(num('epProveedor'), 10) || 0,
+        gramaje_id: parseInt(num('epGramaje'), 10) || 0, dureza_id: parseInt(num('epDureza'), 10) || 0,
+        cerda_id: parseInt(num('epCerda'), 10) || 0, tipo_pintura_id: parseInt(num('epTipo'), 10) || 0,
+        cantidad: parseInt(num('epCantidad'), 10), precio: parseFloat(num('epPrecio')),
+        stock: parseInt(num('epStock'), 10),
+        destacado: document.getElementById('epDestacado').checked,
+        activo: document.getElementById('epActivo').checked
+      })
+    });
+    const d = await r.json();
+    if (!d.ok) throw new Error(d.error || 'Error.');
+    msg.className = 'admin-msg ok';
+    msg.textContent = '✓ ' + d.mensaje + ' Ya se ve en la tienda.';
+    cargarInventario();
+    setTimeout(cerrarModalEditar, 1200);
   } catch (e) { msg.textContent = '✕ ' + e.message; }
 }
 
@@ -585,7 +673,7 @@ async function eliminarFoto(imgId) {
 }
 
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') { cerrarModalNuevo(); cerrarModalFoto(); }
+  if (e.key === 'Escape') { cerrarModalNuevo(); cerrarModalEditar(); cerrarModalFoto(); }
 });
 
 document.addEventListener('DOMContentLoaded', iniciar);
